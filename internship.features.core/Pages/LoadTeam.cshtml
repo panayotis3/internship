@@ -1,0 +1,38 @@
+﻿@page
+@model internship.Pages.LTeamsModel
+@{
+    ViewData["Title"] = "Teams";
+}
+
+<h2>Teams</h2>
+
+<button onclick="show()" type="button">Load Team</button>
+
+<ul id="listContainer" style="display: none">
+    @if (Model.Teams.Any())
+    {
+        foreach (var team in Model.Teams)
+        {
+            <li>@team.Name</li>
+        }
+    }
+</ul>
+
+@section Scripts {
+    <script>
+        function show() {
+            localStorage.setItem("Load", "true");
+            location.reload(); 
+        }
+
+        window.onload = function () {
+            if (window.localStorage && localStorage.getItem('Load') === 'true') {
+                var list = document.getElementById('listContainer');
+                if (list) {
+                    list.style.display = 'block';
+                }
+                localStorage.removeItem('Load'); 
+            }
+        }
+    </script>
+}

@@ -1,0 +1,46 @@
+﻿@page
+@model internship.features.core.Pages.UPlayerModel
+@{
+    ViewData["Title"] = "Update Player";
+}
+<h2>Update Player</h2>
+<form method="post">
+    <div>
+        <label asp-for="SelectedPlayerId">Player</label>
+        <select asp-for="SelectedPlayerId" asp-items="Model.PlayerOptions">
+            <option value="">Select a player</option>
+        </select>
+        <span asp-validation-for="SelectedPlayerId" style="color:red"></span>
+    </div>
+
+    <div style="margin: 10px 0;">
+        <label asp-for="NewPerson.Name"></label>
+        <input asp-for="NewPerson.Name" />
+        <span asp-validation-for="NewPerson.Name" style="color:red"></span>
+        
+        <label asp-for="NewPerson.DateOfBirth"></label>
+        <input asp-for="NewPerson.DateOfBirth" />
+        <span asp-validation-for="NewPerson.DateOfBirth" style="color:red"></span>
+        
+        <label asp-for="NewPerson.Nationality"></label>
+        <input asp-for="NewPerson.Nationality" />
+        <span asp-validation-for="NewPerson.Nationality" style="color:red"></span>
+        
+        <label asp-for="TeamId">Team</label>
+        <select asp-for="TeamId" asp-items="Model.TeamOptions">
+            <option value="">Select a team</option>
+        </select>
+        <span asp-validation-for="TeamId" style="color:red"></span>
+
+        <label asp-for="period"></label>
+        <input asp-for="period" />
+        <span asp-validation-for="period" style="color:red"></span>
+
+        <label asp-for="type"></label>
+        <input asp-for="type" />
+        <span asp-validation-for="type" style="color:red"></span>
+
+    </div>
+    <button type="submit">Update</button>
+
+</form>

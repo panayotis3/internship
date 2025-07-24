@@ -1,0 +1,25 @@
+﻿@page
+@model internship.features.core.Pages.DPlayerModel
+@{
+    ViewData["Title"] = "Delete Player";
+}
+<h2>Delete Player</h2>
+<form method="post">
+    <ul>
+        
+        @foreach (var person in Model.Persons)
+        {
+            if (person == null)
+            {
+                continue;
+            }
+            <li>
+                <label>
+                    <input type="checkbox" name="SelectedPlayerIds" value="@person.Id" />
+                    @person.Name
+                </label>
+            </li>
+        }
+    </ul>
+    <button type="submit">Delete Selected Players</button>
+</form>

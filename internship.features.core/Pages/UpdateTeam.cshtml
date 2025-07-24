@@ -1,0 +1,28 @@
+﻿@page
+@model internship.features.core.Pages.UTeamsModel
+@{
+    ViewData["Title"] = "Update Team";
+}
+
+<h2>Update Team</h2>
+<form method="post">
+    <div>
+        <label asp-for="TeamId"></label>
+        <select asp-for="TeamId" asp-items="Model.TeamOptions">
+            <option value="">Select a team</option>
+        </select>
+        <span asp-validation-for="TeamId" style="color:red"></span>
+    </div>
+    <div>
+        <label asp-for="NewTeam.Name"></label>
+        <input asp-for="NewTeam.Name" />
+        <span asp-validation-for="NewTeam.Name" style="color:red"></span>
+        <label asp-for="NewTeam.City"></label>
+        <input asp-for="NewTeam.City" />
+        <span asp-validation-for="NewTeam.City" style="color:red"></span>
+        <label asp-for="NewTeam.Country"></label>
+        <input asp-for="NewTeam.Country" />
+        <span asp-validation-for="NewTeam.Country" style="color:red"></span>
+    </div>
+    <button type="submit">Update</button>
+</form>

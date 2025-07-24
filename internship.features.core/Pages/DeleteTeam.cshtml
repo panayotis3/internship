@@ -1,0 +1,22 @@
+﻿@page
+@model internship.Pages.DTeamsModel
+@{
+    ViewData["Title"] = "Delete Team";
+}
+
+<h2>Delete Team</h2>
+
+<form method="post">
+    <ul>
+        @foreach (var team in Model.Teams)
+        {
+            <li>
+                <label>
+                    <input type="checkbox" name="SelectedTeamIds" value="@team.Id" />
+                    @team.Name
+                </label>
+            </li>
+        }
+    </ul>
+    <button type="submit">Delete Selected Teams</button>
+</form>

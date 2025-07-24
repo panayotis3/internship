@@ -1,0 +1,41 @@
+﻿@page
+@model internship.Pages.CTeamsModel
+@{
+    ViewData["Title"] = "Create Team";
+}
+
+<h2>Create a New Team</h2>
+
+<form method="post">
+    <div>
+        <label asp-for="NewTeam.Name"></label>
+        <input asp-for="NewTeam.Name" />
+        <span asp-validation-for="NewTeam.Name" style="color:red"></span>
+
+        <label asp-for="NewTeam.City"></label>
+        <input asp-for="NewTeam.City" />
+        <span asp-validation-for="NewTeam.City" style="color:red"></span>
+    
+        <label asp-for="NewTeam.Country"></label>
+        <input asp-for="NewTeam.Country" />
+        <span asp-validation-for="NewTeam.Country" style="color:red"></span>
+    </div>
+    <button type="submit">Create</button>
+</form>
+
+<hr />
+
+<h3>Existing Teams</h3>
+<ul>
+    @if (Model.Teams.Any())
+    {
+        foreach (var team in Model.Teams)
+        {
+            <li>@team.Name</li>
+        }
+    }
+</ul>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

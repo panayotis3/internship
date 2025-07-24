@@ -1,0 +1,46 @@
+﻿@page
+@model internship.features.core.Pages.AdminPageModel
+@{
+    ViewData["Title"] = "Admin Page";
+}
+<header>
+<h1>Welcome to the Admin Page</h1>
+</header>
+<body>
+<div style="align-content:center"> 
+    <p>Use the buttons below to manage players and teams.</p>
+</div>
+
+<div>
+    <button onclick="window.location.href='/CreatePlayer'">Create Player</button>
+    <button onclick="window.location.href='/LoadPlayer'">Load Players</button>
+    <button onclick="window.location.href='/DeletePlayer'">Delete Player</button>
+    <button onclick="window.location.href='/UpdatePlayer'">Update Player</button>
+</div>
+
+<div>
+    <button onclick="window.location.href='/CreateTeam'">Create Team</button>
+    <button onclick="window.location.href='/LoadTeam'">Load Teams</button>
+    <button onclick="window.location.href='/DeleteTeam'">Delete Team</button>
+    <button onclick="window.location.href='/UpdateTeam'">Update Team</button>
+</div>
+</body>
+<style>
+    h1 {
+        text-align: center;
+        color: #333;
+        margin-bottom: 10px;
+    }
+    div {
+        text-align: center;
+        margin-top: 10px;
+    }
+    button {
+        color: black;
+        cursor: pointer;
+        background-color: #007bff;
+    }
+    button:hover {
+        background-color: #0056b3;
+        }
+</style>

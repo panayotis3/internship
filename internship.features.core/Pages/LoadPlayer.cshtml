@@ -1,0 +1,37 @@
+﻿@page
+@model internship.features.core.Pages.LPlayerModel
+@{
+    ViewData["Title"] = "Load Player";
+}
+<h2>Load Players</h2>
+<button onclick="show()" type="button">Load Players</button>
+<ul id="listContainer" style="display: none">
+    @if (Model.Persons.Any())
+    {
+        
+        foreach (var person in Model.Persons)
+        {
+            if (person!=null){
+            <li>@person.Name</li>
+            }        
+        }
+    }
+</ul>
+@section Scripts {
+    <script>
+        function show() {
+            localStorage.setItem("Load", "true");
+            location.reload();
+        }
+
+        window.onload = function () {
+            if (window.localStorage && localStorage.getItem('Load') === 'true') {
+                var list = document.getElementById('listContainer');
+                if (list) {
+                    list.style.display = 'block';
+                }
+                localStorage.removeItem('Load');
+            }
+        }
+    </script>
+}
