@@ -1,14 +1,20 @@
-﻿@using internship.features.core.Models
-@model IEnumerable<Team>
+﻿@using internship.features.core.Models.ViewModels
 
-<aside>
-    <h4>Teams</h4>
-    <ul>
-        @foreach (var team in Model)
-        {
-            <li>
-                <a href="/TeamDetails/@team.Id">@team.Name</a>
-            </li>
-        }
-    </ul>
-</aside>
+<h4 style="font-weight:300">Teams:</h4>
+<ul style="list-style-type: none; padding-left: 0;">
+    @foreach (var team in Model.Teams)
+    {
+        <li>
+            <a class="nav-link text-dark" href="/TeamDetails/@team.Id">@team.Name</a>
+        </li>
+    }
+</ul>
+<h4 style="font-weight:300">Tournaments:</h4>
+<ul style="list-style-type: none; padding-left: 0;">
+    @foreach (var tournament in Model.Tournaments)
+    {
+        <li>
+            <a class="nav-link text-dark" href="/TournamentDetails/@tournament.Id">@tournament.Name</a>
+        </li>
+    }
+</ul>

@@ -22,5 +22,14 @@ public static class TournamentMapper
             Year = entity.Year
         };
     }
+    public static Tournament FromEntity(DbTournament dbModel)
+    {
+        return new Tournament
+        {
+            Id = dbModel.Id,
+            Name = dbModel.Name,
+            Year = dbModel.Year
+        };
+    }
 }
 

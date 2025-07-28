@@ -1,6 +1,7 @@
 ﻿using Data;
 using internship.features.core.Models;
 using internship.features.core.Services.Mappers;
+using Microsoft.EntityFrameworkCore;
 
 namespace internship.features.core.Services
 {
@@ -19,6 +20,16 @@ namespace internship.features.core.Services
             vTournament.Id = 0;
             _context.Tournaments.Add(vTournament);
             await _context.SaveChangesAsync();
+        }
+        public async Task<List<Tournament>> GetAllTournamentsAsync()
+        {
+            var tournaments = await _context.Tournaments.ToListAsync();
+            return tournaments.Select(TournamentMapper.FromEntity).ToList();
+        }
+        public async Task<Tournament?> GetTournamentByIdAsync(int id)
+        {
+            var tournament = await _context.Tournaments.FindAsync(id);
+            return tournament != null ? TournamentMapper.FromEntity(tournament) : null;
         }
     }
 }

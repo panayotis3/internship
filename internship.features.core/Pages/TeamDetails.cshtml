@@ -3,11 +3,6 @@
 @{
     ViewData["Title"] = "Team Details";
 }
-@if (Model.Team != null)
-{
-    <h2>@Model.Team.Name</h2>
-}
-else
-{
-    <p>Team not found.</p>
-}
+
+<h2 style="text-align: center">@Model.Team?.Name</h2>
+
