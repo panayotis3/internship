@@ -7,7 +7,7 @@
         @foreach (var team in Model)
         {
             <li>
-                <a asp-page="/TeamDetails" asp-route-id="@team.Id">@team.Name</a>
+                <a href="/TeamDetails/@team.Id">@team.Name</a>
             </li>
         }
     </ul>
