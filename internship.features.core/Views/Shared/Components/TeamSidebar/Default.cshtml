@@ -1,0 +1,14 @@
+﻿@using internship.features.core.Models
+@model IEnumerable<Team>
+
+<aside>
+    <h4>Teams</h4>
+    <ul>
+        @foreach (var team in Model)
+        {
+            <li>
+                <a asp-page="/TeamDetails" asp-route-id="@team.Id">@team.Name</a>
+            </li>
+        }
+    </ul>
+</aside>
