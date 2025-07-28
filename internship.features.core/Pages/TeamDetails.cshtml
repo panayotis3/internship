@@ -5,4 +5,19 @@
 }
 
 <h2 style="text-align: center">@Model.Team?.Name</h2>
+<div style="display: flex; flex-wrap: wrap; gap: 1rem;">
+    <h4>Players:</h4>
+    <ul style="list-style-type: none">
+        @foreach (var person in Model.Persons)
+        {
 
+            if (person != null)
+            {
+                <li >@person.Name</li>
+
+            }
+
+        }
+    </ul>
+
+</div>

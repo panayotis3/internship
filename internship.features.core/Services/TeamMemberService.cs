@@ -57,6 +57,14 @@ namespace internship.features.core.Services
                 existingMember.Type = teammember.Type;
                 await _context.SaveChangesAsync();
             }
-            }
+        }
+        public async Task<List<TeamMember>> GetTeamMembersByTeamIdAsync(int teamId)
+        {
+            var members = await _context.TeamMembers
+                .Where(tm => tm.TeamId == teamId)
+                .ToListAsync();
+
+            return members.Select(TeamMemberMapper.FromEntity).ToList();
+        }
     }
 }
