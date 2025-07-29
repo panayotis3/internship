@@ -9,18 +9,21 @@ public class TeamDetailsModel : PageModel
     private readonly ITeamService _teamService;
     private readonly ITeamMemberService _teammemberService;
     private readonly IPersonService _personService;
+    private readonly IStadiumService _stadiumService;
 
-    public TeamDetailsModel(ITeamService teamService, ITeamMemberService teamMemberService, IPersonService personService)
+    public TeamDetailsModel(ITeamService teamService, ITeamMemberService teamMemberService, IPersonService personService, IStadiumService stadiumService)
     {
         _teamService = teamService;
         _teammemberService = teamMemberService;
         _personService = personService;
+        _stadiumService = stadiumService;
     }
 
     public Team? Team { get; set; }
     public List<TeamMember> Players { get; set; } = new();
     public List<Person?> Persons { get; set; } = new();
     public List<int> personids { get; set; } = new();
+    public Stadium? Stadium { get; set; }
 
 
     public async Task<IActionResult> OnGetAsync(int id)
@@ -41,6 +44,11 @@ public class TeamDetailsModel : PageModel
         if (Team == null)
         {
             return NotFound();
+        }
+        Stadium = await _stadiumService.GetStadiumByTeamIdAsync(id);
+        if (Stadium == null)
+        {
+           return NotFound();
         }
         return Page();
     }

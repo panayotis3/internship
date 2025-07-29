@@ -5,19 +5,26 @@
 }
 
 <h2 style="text-align: center">@Model.Team?.Name</h2>
-<div style="display: flex; flex-wrap: wrap; gap: 1rem;">
+<div style="display: flex; flex-direction: column; align-items: center;">
+    <p style="margin: 2px; font-weight: normal;">
+        <span style="font-weight: normal; color: gray;">Country:@Model.Team?.Country</span>
+    </p>
+    <p style="margin: 2px; font-weight: normal;">
+        <span style="font-weight: normal; color: gray;">City:@Model.Team?.City</span>
+    </p>
+    <p style="margin: 2px; font-weight: normal;">
+        <span style="font-weight: normal; color: gray;">Stadium:@Model.Stadium?.Name (@Model.Stadium?.Capacity)</span>
+    </p>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 1rem; width: 50%">
     <h4>Players:</h4>
     <ul style="list-style-type: none">
         @foreach (var person in Model.Persons)
         {
-
             if (person != null)
             {
                 <li >@person.Name</li>
-
             }
-
         }
     </ul>
-
 </div>
