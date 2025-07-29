@@ -7,44 +7,76 @@
 <h2 style="text-align: center">@Model.Team?.Name</h2>
 <div style="display: flex; flex-direction: column; align-items: center;">
     <p style="margin: 2px; font-weight: normal;">
-        <span style="font-weight: normal; color: gray;">Country:@Model.Team?.Country</span>
+        <span style="font-weight: normal; color: gray;">Country: @Model.Team?.Country</span>
     </p>
     <p style="margin: 2px; font-weight: normal;">
-        <span style="font-weight: normal; color: gray;">City:@Model.Team?.City</span>
+        <span style="font-weight: normal; color: gray;">City: @Model.Team?.City</span>
     </p>
     <p style="margin: 2px; font-weight: normal;">
-        <span style="font-weight: normal; color: gray;">Stadium:@Model.Stadium?.Name (@Model.Stadium?.Capacity)</span>
+        <span style="font-weight: normal; color: gray;">Stadium: @Model.Stadium?.Name (@Model.Stadium?.Capacity)</span>
     </p>
 </div>
-<hr/>
-<div style="display: flex; flex-wrap: wrap; gap: 1rem; width: 50%">
-    <h4>Players:</h4>
-    <ul style="list-style-type: none">
-        @foreach (var person in Model.Persons)
-        {
-            if (person != null)
-            {
-                <li >@person.Name</li>
-            }
-        }
-    </ul>
-    <h4>Standings:</h4>
-    <ul style="list-style-type: none">
-    @foreach (var standing in Model.Standings.Where(s => s?.JunctionTournament != null))
-    {
-        
-            var tournament = Model.Tournaments
-            .FirstOrDefault(t => t.Id == standing?.JunctionTournament?.TournamentId);
-        <li>
-            <strong>@tournament?.Name (@tournament?.Year)</strong><br />
-            <div style="margin-left: 1rem;">
-                Matches: @standing?.Matches <br />
-                Won: @standing?.Won <br />
-                Draw: @standing?.Draw <br />
-                Lost: @standing?.Lost
-            </div>
-        </li>
-    }
-    </ul>
-    
+
+<hr />
+
+<div style="display: flex; gap: 2rem; width: 100%; max-width: 900px; margin: 0 auto 20px auto;">
+    <div style="flex: 1; overflow-x: auto;">
+        <h4>Players:</h4>
+        <table style="width: 100%; border-collapse: collapse;">
+            <thead>
+                <tr style="background-color: #f0f0f0;">
+                    <th style="border: 1px solid #ddd; padding: 8px;">Name</th>
+                    <th style="border: 1px solid #ddd; padding: 8px;">Date of Birth</th>
+                    <th style="border: 1px solid #ddd; padding: 8px;">Nationality</th>
+                    <th style="border: 1px solid #ddd; padding: 8px;">Period</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < Model.Players.Count; i++)
+                {
+                    var player = Model.Players[i];
+                    var person = Model.Persons.ElementAtOrDefault(i);
+                    <tr>
+                        <td style="border: 1px solid #ddd; padding: 8px;">@person?.Name</td>
+                        <td style="border: 1px solid #ddd; padding: 8px;">
+                           @person?.DateOfBirth
+                        </td>
+                        <td style="border: 1px solid #ddd; padding: 8px;">@person?.Nationality</td>
+                        <td style="border: 1px solid #ddd; padding: 8px;">@player.Period</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <div style="flex: 1; overflow-x: auto;">
+        <h4>Standings:</h4>
+        <table style="width: 100%; border-collapse: collapse;">
+            <thead>
+                <tr style="background-color: #f0f0f0;">
+                    <th style="border: 1px solid #ddd; padding: 8px;">Tournament</th>
+                    <th style="border: 1px solid #ddd; padding: 8px;">Matches</th>
+                    <th style="border: 1px solid #ddd; padding: 8px;">Won</th>
+                    <th style="border: 1px solid #ddd; padding: 8px;">Draw</th>
+                    <th style="border: 1px solid #ddd; padding: 8px;">Lost</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var standing in Model.Standings.Where(s => s?.JunctionTournament != null))
+                {
+                    var tournament = Model.Tournaments
+                    .FirstOrDefault(t => t.Id == standing?.JunctionTournament?.TournamentId);
+                    <tr>
+                        <td style="border: 1px solid #ddd; padding: 8px;">
+                            @tournament?.Name (@tournament?.Year)
+                        </td>
+                        <td style="border: 1px solid #ddd; padding: 8px;">@standing?.Matches</td>
+                        <td style="border: 1px solid #ddd; padding: 8px;">@standing?.Won</td>
+                        <td style="border: 1px solid #ddd; padding: 8px;">@standing?.Draw</td>
+                        <td style="border: 1px solid #ddd; padding: 8px;">@standing?.Lost</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 </div>
