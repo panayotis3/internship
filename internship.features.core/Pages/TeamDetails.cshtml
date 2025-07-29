@@ -16,6 +16,7 @@
         <span style="font-weight: normal; color: gray;">Stadium:@Model.Stadium?.Name (@Model.Stadium?.Capacity)</span>
     </p>
 </div>
+<hr/>
 <div style="display: flex; flex-wrap: wrap; gap: 1rem; width: 50%">
     <h4>Players:</h4>
     <ul style="list-style-type: none">
@@ -27,4 +28,23 @@
             }
         }
     </ul>
+    <h4>Standings:</h4>
+    <ul style="list-style-type: none">
+    @foreach (var standing in Model.Standings.Where(s => s?.JunctionTournament != null))
+    {
+        
+            var tournament = Model.Tournaments
+            .FirstOrDefault(t => t.Id == standing?.JunctionTournament?.TournamentId);
+        <li>
+            <strong>@tournament?.Name (@tournament?.Year)</strong><br />
+            <div style="margin-left: 1rem;">
+                Matches: @standing?.Matches <br />
+                Won: @standing?.Won <br />
+                Draw: @standing?.Draw <br />
+                Lost: @standing?.Lost
+            </div>
+        </li>
+    }
+    </ul>
+    
 </div>

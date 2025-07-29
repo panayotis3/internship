@@ -24,5 +24,14 @@ public static class JunctionTournamentMapper
             TournamentId = entity.TournamentId
         };
     }
+    public static JunctionTournament FromEntity(DbJunctionTournament dbModel)
+    {
+        return new JunctionTournament
+        {
+            Id = dbModel.Id,
+            TournamentId = dbModel.TournamentId,
+            TeamId = dbModel.TeamId
+        };
+    }
 }
 

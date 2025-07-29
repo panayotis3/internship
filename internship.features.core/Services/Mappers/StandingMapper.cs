@@ -27,7 +27,20 @@ public static class StandingMapper
             Matches = entity.Matches,
             Won = entity.Won,
             Lost = entity.Lost,
-            Draw = entity.Draw
+            Draw = entity.Draw,
+        };
+    }
+    public static Standing FromEntity(DbStanding dbModel)
+    {
+        return new Standing
+        {
+            Id = dbModel.Id,
+            JunctionTournamentId = dbModel.JunctionTournamentId,
+            Matches = dbModel.Matches,
+            Won = dbModel.Won,
+            Lost = dbModel.Lost,
+            Draw = dbModel.Draw,
+            JunctionTournament = dbModel.JunctionTournament
         };
     }
 }
