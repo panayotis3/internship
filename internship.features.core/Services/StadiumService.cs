@@ -32,6 +32,11 @@ namespace internship.features.core.Services
             }
             return null;
         }
+        public async Task<Stadium?> GetStadiumByIdAsync(int id)
+        {
+            var stadium = await _context.Stadiums.FindAsync(id);
+            return stadium != null ? StadiumMapper.ToModel(stadium) : null;
+        }
     }
 }
 

@@ -32,5 +32,18 @@ public static class FictureMapper
             TournamentId = entity.TournamentId
         };
     }
+        public static Ficture FromEntity(DbFicture dbModel)
+    {
+        return new Ficture
+        {
+            Id = dbModel.Id,
+            HomeTeamId = dbModel.HomeTeamId,
+            AwayTeamId = dbModel.AwayTeamId,
+            StadiumId = dbModel.StadiumId,
+            RefereeId = dbModel.RefereeId,
+            Tickets = dbModel.Tickets,
+            TournamentId = dbModel.TournamentId
+        };
+    }
 }
 

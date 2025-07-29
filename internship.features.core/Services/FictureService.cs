@@ -1,6 +1,7 @@
 ﻿using Data;
 using internship.features.core.Models;
 using internship.features.core.Services.Mappers;
+using Microsoft.EntityFrameworkCore;
 
 namespace internship.features.core.Services
 {
@@ -19,6 +20,11 @@ namespace internship.features.core.Services
             vFicture.Id = 0;
             _context.Fictures.Add(vFicture);
             await _context.SaveChangesAsync();
+        }
+        public async Task<List<Ficture>> GetAllFicturesAsync()
+        {
+            var fictures = await _context.Fictures.ToListAsync();
+            return fictures.Select(FictureMapper.FromEntity).ToList();
         }
     }
 }

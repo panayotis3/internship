@@ -6,5 +6,6 @@ namespace internship.features.core.Services
     {
         Task CreateStadiumAsync(Stadium stadium);
         Task<Stadium?> GetStadiumByTeamIdAsync(int teamid);
+        Task<Stadium?> GetStadiumByIdAsync(int id);
     }
 }

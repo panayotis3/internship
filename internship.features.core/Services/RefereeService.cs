@@ -20,5 +20,10 @@ namespace internship.features.core.Services
             _context.Referees.Add(vReferee);
             await _context.SaveChangesAsync();
         }
+        public async Task<Referee?> GetRefereeByIdAsync(int id)
+        {
+            var referee = await _context.Referees.FindAsync(id);
+            return referee != null ? RefereeMapper.FromEntity(referee) : null;
+        }
     }
 }

@@ -22,7 +22,16 @@ public static class RefereeMapper
             Id = entity.Id,
             Type = entity.Type,
             PersonId = entity.PersonId,
-            
+
+        };
+    }
+    public static Referee FromEntity(DbReferee dbModel)
+    {
+        return new Referee
+        {
+            Id = dbModel.Id,
+            Type = dbModel.Type,
+            PersonId = dbModel.PersonId
         };
     }
 }
