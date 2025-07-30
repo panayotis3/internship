@@ -26,5 +26,10 @@ namespace internship.features.core.Services
             var fictures = await _context.Fictures.ToListAsync();
             return fictures.Select(FictureMapper.FromEntity).ToList();
         }
+        public async Task<Ficture?> GetFictureByIdAsync(int id)
+        {
+            var ficture = await _context.Fictures.FindAsync(id);
+            return ficture != null ? FictureMapper.FromEntity(ficture) : null;
+        }
     }
 }

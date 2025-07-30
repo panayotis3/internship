@@ -1,4 +1,91 @@
-﻿@page
+﻿@page "{id:int}"
 @model internship.features.core.Pages.FictureDetailsModel
+
 @{
+    ViewData["Title"] = "Ficture Details";
+}
+
+<h2 style="text-align: center">Fixture Details</h2>
+
+@if (Model.Ficture != null)
+{
+    <div>
+        <h3>@Model.HomeTeam?.Name vs @Model.AwayTeam?.Name</h3>
+        <p><strong>Stadium:</strong> @Model.FictureStadium?.Name</p>
+        <p><strong>Tournament:</strong> @Model.FictureTournament?.Name</p>
+        <p><strong>Referee:</strong> @Model.RefereePerson?.Name</p>
+    </div>
+
+    <hr />
+
+    <h4>Score</h4>
+    <p>
+        <strong>@Model.HomeTeam?.Name:</strong> @Model.HomeTeamGoals.Count goals<br />
+        <strong>@Model.AwayTeam?.Name:</strong> @Model.AwayTeamGoals.Count goals
+    </p>
+
+    <h4>Goal Scorers</h4>
+    <div>
+        <strong>@Model.HomeTeam?.Name Scorers:</strong>
+        <ul>
+            @for (int i = 0; i < Model.HomeTeamGoals.Count; i++)
+            {
+                var goal = Model.HomeTeamGoals[i];
+                var scorer = Model.HomeTeamScorers.ElementAtOrDefault(i);
+                var person = Model.HomeTeamScorers.ElementAtOrDefault(i) != null
+                ? Model.HomeTeamScorers[i]?.Id == null ? null : Model.HomeTeamScorers[i] : null;
+                var scorerPerson = Model.HomeTeamScorers.ElementAtOrDefault(i) != null ? Model.HomeTeamScorers[i] : null;
+                var scorerName = Model.HomeTeamScorers.ElementAtOrDefault(i) != null ? Model.HomeTeamScorers[i]?.Id : null;
+
+                <li>@Model.HomeTeamScorers[i]?.Name - Goal @goal.Minute'</li>
+            }
+        </ul>
+
+        <strong>@Model.AwayTeam?.Name Scorers:</strong>
+        <ul>
+            @for (int i = 0; i < Model.AwayTeamGoals.Count; i++)
+            {
+                var goal = Model.AwayTeamGoals[i];
+                var scorer = Model.AwayTeamScorers.ElementAtOrDefault(i);
+                <li>@scorer?.Name - Goal @goal.Minute'</li>
+            }
+        </ul>
+    </div>
+
+    <hr />
+
+    <h4>Cards</h4>
+    <div>
+        <strong>@Model.HomeTeam?.Name Carded Players:</strong>
+        <ul>
+            @for (int i = 0; i < Model.Cards.Count; i++)
+            {
+                var card = Model.Cards[i];
+                var cardedPlayer = Model.CardedPlayers.ElementAtOrDefault(i);
+                var person = cardedPlayer != null ? Model.HomeCardedPlayers.FirstOrDefault(p => p?.Id == cardedPlayer.PersonId) : null;
+                if (person != null && cardedPlayer?.TeamId == Model.Ficture.HomeTeamId)
+                {
+                    <li>@person.Name - @card.CardType (Minute @card.Minute')</li>
+                }
+            }
+        </ul>
+
+        <strong>@Model.AwayTeam?.Name Carded Players:</strong>
+        <ul>
+            @for (int i = 0; i < Model.Cards.Count; i++)
+            {
+                var card = Model.Cards[i];
+                var cardedPlayer = Model.CardedPlayers.ElementAtOrDefault(i);
+                var person = cardedPlayer != null ? Model.AwayCardedPlayers.FirstOrDefault(p => p?.Id == cardedPlayer.PersonId) : null;
+                if (person != null && cardedPlayer?.TeamId == Model.Ficture.AwayTeamId)
+                {
+                    <li>@person.Name - @card.CardType (Minute @card.Minute')</li>
+                }
+            }
+        </ul>
+    </div>
+}
+else
+{
+    <p>Fixture not found.</p>
 }

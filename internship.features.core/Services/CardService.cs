@@ -1,6 +1,7 @@
 ﻿using Data;
 using internship.features.core.Models;
 using internship.features.core.Services.Mappers;
+using Microsoft.EntityFrameworkCore;
 
 namespace internship.features.core.Services
 {
@@ -17,6 +18,13 @@ namespace internship.features.core.Services
             vCard.Id = 0;
             _context.Cards.Add(vCard);
             await _context.SaveChangesAsync();
+        }
+        public async Task<List<Card>> GetCardsByFictureIdAsync(int fictureId)
+        {
+            var cards = await _context.Cards
+                .Where(c => c.FictureId == fictureId)
+                .ToListAsync();
+            return cards.Select(CardMapper.ToModel).ToList();
         }
     }
 }

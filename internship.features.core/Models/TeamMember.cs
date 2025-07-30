@@ -11,5 +11,7 @@ namespace internship.features.core.Models
         public required string Period { get; set; }
         [MaxLength(10)]
         public required string Type { get; set; }
+        public Person? Person { get; set; }
+        public Team? Team { get; set; }
     }
 }

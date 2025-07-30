@@ -66,5 +66,12 @@ namespace internship.features.core.Services
 
             return members.Select(TeamMemberMapper.FromEntity).ToList();
         }
+        public async Task<TeamMember?> GetTeamMemberByIdAsync(int id)
+        {
+            var teammember = await _context.TeamMembers
+                .Include(tm => tm.Person)
+                .FirstOrDefaultAsync(tm => tm.Id == id);
+            return teammember != null ? TeamMemberMapper.ToModel(teammember): null;
+        }
     }
 }

@@ -9,5 +9,10 @@
         public int StadiumId { get; set; }
         public int HomeTeamId { get; set; }
         public int AwayTeamId { get; set; }
+        public Referee? Referee { get; set; }
+        public Tournament? Tournament { get; set; }
+        public Stadium? Stadium { get; set; }
+        public Team? HomeTeam { get; set; }
+        public Team? AwayTeam { get; set; }
     }
 }

@@ -26,7 +26,7 @@ public static class CardMapper
             CardType = entity.CardType,
             TeamMemberId = entity.TeamMemberId,
             FictureId = entity.FictureId,
-            Minute = entity.Minute,
+            Minute = entity.Minute
         };
     }
 }

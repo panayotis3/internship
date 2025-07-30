@@ -8,5 +8,6 @@ namespace internship.features.core.Models
         public int PersonId { get; set; }
         [MaxLength(10)]
         public required string Type { get; set; }
+        public Person? Person { get; set; }
     }
 }

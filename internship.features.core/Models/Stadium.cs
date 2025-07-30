@@ -9,5 +9,6 @@ namespace internship.features.core.Models
         public required string Name { get; set; }
         public required int Capacity { get; set; }
         public int TeamId { get; set; }
+        public Team? Team { get; set; }
     }
 }

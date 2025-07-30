@@ -10,5 +10,7 @@ namespace internship.features.core.Models
         [MaxLength(10)]
         public required string CardType { get; set; }
         public required  int Minute { get; set; }
+        public TeamMember? TeamMember { get; set; }
+        public Ficture? Ficture { get; set; }
     }
 }

@@ -5,5 +5,6 @@ namespace internship.features.core.Services
     {
         Task CreateFictureAsync(Ficture ficture);
         Task<List<Ficture>> GetAllFicturesAsync();
+        Task<Ficture?> GetFictureByIdAsync(int id);
     }
 }
