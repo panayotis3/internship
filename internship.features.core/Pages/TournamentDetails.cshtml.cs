@@ -61,10 +61,8 @@ public class TournamentDetailsModel : PageModel
             if (referee != null)
             {
                 Referees.Add(referee);
-            }
-            foreach (var re in Referees)
-            {
-                var person = await _personService.GetPersonByIdAsync(re.PersonId);
+
+                var person = await _personService.GetPersonByIdAsync(referee.PersonId);
                 if (person != null)
                 {
                     Refnames.Add(person);
