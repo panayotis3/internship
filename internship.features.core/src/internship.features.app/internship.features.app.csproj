@@ -1,10 +1,20 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="wwwroot\favicon-32x32.png" />
+    <Content Remove="wwwroot\noback.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\favicon-32x32.png" />
+    <None Include="wwwroot\noback.jpg" />
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\internship.features.core\internship.features.core.csproj" />
